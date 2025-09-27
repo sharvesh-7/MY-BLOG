@@ -41,6 +41,9 @@ blogPosts.forEach(url => {
     appearOnScroll.observe(fader);
   });
 });
+// Future scripts like animations, blog loading etc.
+console.log("Portfolio site loaded.");
 
 });
+
 
