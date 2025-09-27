@@ -3,62 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio & Blog</title>
+  <title>Your Name — Designer / Developer</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <h1>My Portfolio Blog</h1>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  <div id="navbar"></div>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h2>Hello, I'm venkat sharvesh</h2>
-    <p>vannakam friends, experience the phenomenal writings.</p>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Hi, I’m **Your Name**</h1>
+      <p>I build thoughtful, interactive web experiences.</p>
+      <a href="contact.html" class="btn-primary">Let’s Build Together</a>
+    </div>
+  </header>
+
+  <section class="works">
+    <h2>Recent Work</h2>
+    <div class="project-list">
+      <!-- Each project card -->
+      <div class="project-card">
+        <a href="projects/project1.html">
+          <img src="images/project1.jpg" alt="Project 1">
+          <h3>Project Title</h3>
+          <p>Short description</p>
+        </a>
+      </div>
+      <!-- more cards -->
+    </div>
   </section>
 
-  <!-- About Section -->
   <section class="about">
     <h2>About Me</h2>
-    <p>I am a part time writer, director, engineer,chef,artist and a shuttler.</p>
+    <p>Short bio: who you are, what you do, what you value.</p>
   </section>
 
-  <!-- Portfolio Preview -->
-  <section class="portfolio-preview">
-    <h2>Portfolio</h2>
-    <div class="projects">
-      <div class="project">
-        <img src="images/project1.jpg" alt="Project 1">
-        <h3>Project 1</h3>
-      </div>
-      <div class="project">
-        <img src="images/project2.jpg" alt="Project 2">
-        <h3>Project 2</h3>
-      </div>
-      <div class="project">
-        <img src="images/project3.jpg" alt="Project 3">
-        <h3>Project 3</h3>
-      </div>
-    </div>
-    <a href="portfolio.html" class="btn">View All Projects</a>
+  <section class="contact-cta">
+    <h2>Want to work together?</h2>
+    <a href="contact.html" class="btn-secondary">Say Hello</a>
   </section>
 
-  <!-- Latest Blog Posts -->
-  <section class="latest-posts">
-    <h2>Latest Blog Posts</h2>
-    <div id="blog-posts"></div>
-    <a href="blog.html" class="btn">Read More Blogs</a>
-  </section>
+  <footer>
+    <p>© 2025 Your Name</p>
+    <p><a href="https://linkedin.com/in/yourprofile">LinkedIn</a> • <a href="mailto:you@example.com">Email</a></p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-
