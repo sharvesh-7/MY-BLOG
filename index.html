@@ -3,48 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name — Designer / Developer</title>
+  <title>My Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="navbar"></div>
-
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Hi, I’m **Your Name**</h1>
-      <p>I build thoughtful, interactive web experiences.</p>
-      <a href="contact.html" class="btn-primary">Let’s Build Together</a>
-    </div>
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">MyPortfolio</a>
+      <ul class="nav-links">
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <section class="works">
-    <h2>Recent Work</h2>
-    <div class="project-list">
-      <!-- Each project card -->
-      <div class="project-card">
-        <a href="projects/project1.html">
-          <img src="images/project1.jpg" alt="Project 1">
-          <h3>Project Title</h3>
-          <p>Short description</p>
-        </a>
-      </div>
-      <!-- more cards -->
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Hello, I'm <span>Your Name</span></h1>
+    <p>A developer & blogger building cool stuff.</p>
+  </section>
+
+  <!-- Portfolio Preview -->
+  <section class="grid">
+    <div class="card">
+      <h2>Project 1</h2>
+      <p>Short description of your work.</p>
     </div>
-  </section>
-
-  <section class="about">
-    <h2>About Me</h2>
-    <p>Short bio: who you are, what you do, what you value.</p>
-  </section>
-
-  <section class="contact-cta">
-    <h2>Want to work together?</h2>
-    <a href="contact.html" class="btn-secondary">Say Hello</a>
+    <div class="card">
+      <h2>Project 2</h2>
+      <p>Another quick showcase.</p>
+    </div>
+    <div class="card">
+      <h2>Blog Post 1</h2>
+      <p>A glimpse of your thoughts.</p>
+    </div>
   </section>
 
   <footer>
     <p>© 2025 Your Name</p>
-    <p><a href="https://linkedin.com/in/yourprofile">LinkedIn</a> • <a href="mailto:you@example.com">Email</a></p>
   </footer>
 
   <script src="script.js"></script>
