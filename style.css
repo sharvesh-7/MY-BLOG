@@ -7,8 +7,8 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: #fff;
-  color: #000;
+  background: #000;
+  color: #e5e5e5;
   line-height: 1.6;
   padding: 20px;
 }
@@ -24,7 +24,7 @@ body {
 .logo {
   font-weight: bold;
   text-decoration: none;
-  color: black;
+  color: #fff;
 }
 
 .nav-links {
@@ -35,12 +35,12 @@ body {
 
 .nav-links a {
   text-decoration: none;
-  color: black;
+  color: #e5e5e5;
   transition: 0.2s;
 }
 
 .nav-links a:hover {
-  color: gray;
+  color: #fff;
 }
 
 /* Hero */
@@ -54,7 +54,7 @@ body {
 }
 
 .hero span {
-  color: gray;
+  color: #aaa;
 }
 
 /* Grid */
@@ -65,14 +65,14 @@ body {
 }
 
 .card {
-  border: 1px solid #e5e5e5;
+  border: 1px solid #333;
   padding: 20px;
   transition: transform 0.2s ease-in-out;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  border-color: black;
+  border-color: #fff;
 }
 
 /* Footer */
@@ -80,5 +80,6 @@ footer {
   margin-top: 40px;
   text-align: center;
   font-size: 0.9rem;
-  color: gray;
+  color: #aaa;
 }
+
