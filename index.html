@@ -53,12 +53,213 @@
 <!-- THREE.js library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Sky Background</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        /* Canvas will be the background */
+        #anime-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(to bottom, #1e2a4a, #2f406e, #5c6e91);
+        }
+
+        /* Content overlay */
+        .content-overlay {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            color: white;
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 25px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-top: 1rem;
+            letter-spacing: 0.05em;
+             text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+
+    <!-- The animated background canvas -->
+    <canvas id="anime-bg"></canvas>
+
+    <!-- Your website content goes here -->
+   <script>
+        const canvas = document.getElementById('anime-bg');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let stars = [];
+        let clouds = [];
+
+        // Star class
+        class Star {
+            constructor(x, y, radius, opacity) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.opacity = opacity;
+                this.initialOpacity = opacity;
+                this.opacityDirection = 1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fill();
+            }
+
+            update() {
+                // Twinkle effect
+                if (this.opacity > this.initialOpacity || this.opacity < 0.1) {
+                    this.opacityDirection *= -1;
+                }
+                this.opacity += 0.005 * this.opacityDirection * Math.random();
+                this.draw();
+            }
+        }
+        
+        // Cloud class
+        class Cloud {
+            constructor(x, y, size, speed) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.speed = speed;
+                this.parts = [];
+                
+                // Create cloud parts
+                for(let i=0; i<5 + Math.random() * 5; i++){
+                    this.parts.push({
+                        offsetX: (Math.random() - 0.5) * size * 1.5,
+                        offsetY: (Math.random() - 0.5) * size * 0.3,
+                        radius: Math.random() * size * 0.5 + size * 0.3,
+                        opacity: 0.1 + Math.random() * 0.2
+                    });
+                }
+            }
+            
+            draw() {
+                 this.parts.forEach(part => {
+                    ctx.beginPath();
+                    ctx.arc(this.x + part.offsetX, this.y + part.offsetY, part.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${part.opacity})`;
+                    ctx.fill();
+                });
+            }
+            
+            update() {
+                this.x += this.speed;
+                if(this.x - this.size * 2 > width) {
+                    this.x = -this.size * 2;
+                }
+                this.draw();
+            }
+        }
+
+
+        function init() {
+            // Set canvas size
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+
+            // Create stars
+            stars = [];
+            for (let i = 0; i < 150; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * height * 0.9; // Don't place stars too low
+                const radius = Math.random() * 1.5;
+                const opacity = Math.random() * 0.5 + 0.2;
+                stars.push(new Star(x, y, radius, opacity));
+            }
+            
+            // Create clouds
+            clouds = [];
+            for(let i = 0; i < 5; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * height * 0.4 + height * 0.1; // Place clouds in the upper half
+                const size = Math.random() * 50 + 40;
+                const speed = Math.random() * 0.1 + 0.05;
+                clouds.push(new Cloud(x, y, size, speed));
+            }
+
+        }
+
+        function animate() {
+            // Clear canvas with a gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, height);
+            gradient.addColorStop(0, '#1e2a4a'); // Deep night blue
+            gradient.addColorStop(0.6, '#2f406e'); // Lighter blue
+            gradient.addColorStop(1, '#5c6e91'); // Faint horizon light
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+            
+            // Update and draw elements
+            stars.forEach(star => star.update());
+            clouds.forEach(cloud => cloud.update());
+            
+            requestAnimationFrame(animate);
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', init);
+
+        // Initial setup and start animation
+        init();
+        animate();
+
+    </script>
+</body>
+</html>
 
 
 });
 </script>
 </body>
 </html>
+
 
 
 
